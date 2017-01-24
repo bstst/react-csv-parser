@@ -17,13 +17,26 @@ class App extends React.Component {
           But it's a MUST, and thus a TODO: properly parse quotation marks.
         </p>
         <textarea onChange={this.handleTextChange} value={this.state.value} className={styles.text} />
-        <Parser input={this.state.value} />
+        <p>
+          <label>
+            <input
+              type="checkbox"
+              value={this.state.headerStyling}
+              onClick={this.handleStylizeClick}
+            /> Stylize header
+          </label>
+        </p>
+        <Parser input={this.state.value} headerStyling={this.state.headerStyling} />
       </div>
     )
   }
 
   handleTextChange = (e) => {
     this.setState({value: e.target.value})
+  }
+
+  handleStylizeClick = (e) => {
+    this.setState({headerStyling: !this.state.headerStyling})
   }
 }
 
