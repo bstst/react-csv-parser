@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var config = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    './app.js',
+    './index.js',
     'webpack-hot-middleware/client'
   ],
   output: {
@@ -22,6 +22,13 @@ var config = {
         test: /\.js$/,
         loaders: ['babel'],
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        ]
       }
     ]
   }
