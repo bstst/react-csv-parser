@@ -1,1 +1,2 @@
-# react-csv-parser
+npm install
+npm start
