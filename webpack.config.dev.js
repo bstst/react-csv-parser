@@ -9,7 +9,7 @@ var config = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bunnpm install --save-dev babel-loaderdle.js',
+    filename: 'bundle.js',
     publicPath: '/dist/'
   },
   plugins: [
