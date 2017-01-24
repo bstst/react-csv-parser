@@ -1,7 +1,8 @@
 .table {
   width: 100%;
+  border-collapse: collapse;
 }
 .td {
   padding: 10px;
-  border: 1px solid #eee;
+  border: 2px solid #eee;
 }

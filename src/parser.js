@@ -9,7 +9,7 @@ class Parser extends React.Component {
     const lines = input.split('\n')
     for (var i  in lines) {
       let row = []
-      let items = lines[i].split(',')
+      let items = lines[i].split(/,/)
       for (var j in items) {
         row.push(<td key={i + '' + j} className={styles.td}>{items[j]}</td>)
       }
