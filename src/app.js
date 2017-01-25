@@ -5,7 +5,7 @@ import styles from './app.css'
 
 class App extends React.Component {
   state = {
-    value: "a,b,c\n1,2,3\n4,5,6"
+    value: "a,b,\n1,\"2,222\",3\n4,,6"
   }
 
   render () {

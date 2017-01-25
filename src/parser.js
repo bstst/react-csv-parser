@@ -10,13 +10,23 @@ class Parser extends React.Component {
     const lines = input.split('\n')
     for (var i  in lines) {
       let row = []
-      let items = lines[i].split(/,/)
+
+      let line = lines[i]
+      // a bit ugly but the flow is clear, todo: improve:
+      // add a blank space after last comma for an empty value
+      line = line.replace(/,$/g, ', ')
+      // add a blank space between commas for an empty value
+      line = line.replace(/,,/g, ', ,')
+
+      let items = line.match(/".*?"|[^,]+/g)
       for (var j in items) {
+        let value = items[j] === ',,' ? '' : items[j]
+        value = value.replace(/^"|"$/g, '')
         row.push(
           <td
-            key={i + '' + j}
+            key={i + '-' + j}
             className={styles.td}
-          >{items[j]}</td>
+          >{value}</td>
         )
       }
       result.push(
