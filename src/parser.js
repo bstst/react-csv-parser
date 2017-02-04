@@ -2,28 +2,38 @@ import React from 'react'
 import styles from './parser.css'
 import cn from 'classnames'
 
+function splitLines (input, separator = '\n') {
+  return input.split(separator)
+}
+
+function splitItems (input) {
+  let result
+
+  // let's make it not like everyone else does it!
+  result = input.replace(/^,/, ' ,')
+  // add a blank space before last comma for an empty value
+  result = result.replace(/^,/, ' ,')
+  // add a blank space after last comma for an empty value
+  result = result.replace(/,$/, ', ')
+  // add a blank space between unspaced commas for an empty value
+  result = result.replace(/,,/g, ', ,')
+
+  return result.match(/".*?"|[^,]+/g)
+}
+
 class Parser extends React.Component {
   render () {
     const {input, headerStyling} = this.props
     let result = []
 
-    const lines = input.split('\n')
+    const lines = splitLines(input)
     for (var i  in lines) {
       let row = []
-
       let line = lines[i]
-      // a bit ugly but the let's make be not like everyone else.
-      // add a blank space before last comma for an empty value
-      line = line.replace(/^,/g, ' ,')
-      // add a blank space after last comma for an empty value
-      line = line.replace(/,$/g, ', ')
-      // add a blank space between unspaced commas for an empty value
-      line = line.replace(/,,/g, ', ,')
-
-      let items = line.match(/".*?"|[^,]+/g)
+      let items = splitItems(line)
       for (var j in items) {
-        let value = items[j] === ',,' ? '' : items[j]
-        value = value.replace(/^"|"$/g, '')
+        let value = items[j]
+        value = value.replace(/^"|"$|,,/g, '') // clean up certain values
         row.push(
           <td
             key={i + '-' + j}
