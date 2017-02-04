@@ -12,10 +12,12 @@ class Parser extends React.Component {
       let row = []
 
       let line = lines[i]
-      // a bit ugly but the flow is clear, todo: improve:
+      // a bit ugly but the let's make be not like everyone else.
+      // add a blank space before last comma for an empty value
+      line = line.replace(/^,/g, ' ,')
       // add a blank space after last comma for an empty value
       line = line.replace(/,$/g, ', ')
-      // add a blank space between commas for an empty value
+      // add a blank space between unspaced commas for an empty value
       line = line.replace(/,,/g, ', ,')
 
       let items = line.match(/".*?"|[^,]+/g)

@@ -2,9 +2,10 @@
   padding: 2em;
 }
 
-.warning {
-  font-style: italic;
+.input {
+  width: 100%;
 }
+
 .text {
   height: 300px;
   width: 100%;

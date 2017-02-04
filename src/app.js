@@ -5,6 +5,7 @@ import styles from './app.css'
 
 class App extends React.Component {
   state = {
+    loading: false,
     value: "a,b,\n1,\"2,222\",3\n4,,6"
   }
 
@@ -12,9 +13,19 @@ class App extends React.Component {
     return (
       <div className={styles.content}>
         <h1>A Super Simple CSV parser</h1>
-        <p className={styles.warning}>
-          Warning: To save time I've decided to not handle values containing quotes, e.g. 1,"2,2",3 — should be parsed to three values: "1", "2,2", "3".
-          But it's a MUST, and thus a TODO: properly parse quotation marks.
+        <p>
+          <input
+            className={styles.input}
+            ref="url"
+            defaultValue="https://raw.githubusercontent.com/vilnius/darzeliai/master/data/darzeliai.csv"
+          />
+        <button onClick={this.handleDataFromUrlClick}>
+          {
+            this.state.loading
+            ? 'Loading'
+            : 'Load sample data from URL'
+          }
+        </button>
         </p>
         <textarea onChange={this.handleTextChange} value={this.state.value} className={styles.text} />
         <p>
@@ -37,6 +48,16 @@ class App extends React.Component {
 
   handleStylizeClick = (e) => {
     this.setState({headerStyling: !this.state.headerStyling})
+  }
+
+  handleDataFromUrlClick = (e) => {
+    if (this.state.loading) {
+      return false
+    }
+    this.setState({loading: true})
+    fetch(this.refs.url.value)
+      .then(response => response.text())
+      .then(data => this.setState({value: data, loading: false}))
   }
 }
 

@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var config = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
+    'whatwg-fetch',
     './index.js',
     'webpack-hot-middleware/client'
   ],
