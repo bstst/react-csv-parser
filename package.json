@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "NODE_ENV=testing mocha --compilers js:babel-register --require babel-polyfill --require ignore-styles --recursive ./src/**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,10 @@
   },
   "dependencies": {
     "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.22.0",
     "css-loader": "^0.26.1",
+    "ignore-styles": "^5.0.1",
+    "mocha": "^3.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "whatwg-fetch": "^2.0.2"

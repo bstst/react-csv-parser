@@ -55,3 +55,4 @@ class Parser extends React.Component {
 }
 
 export default Parser
+export {splitLines, splitItems}
