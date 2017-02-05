@@ -11,7 +11,7 @@ function splitItems (input) {
 
   // let's make it not like everyone else does it!
   // add a blank space before last comma for an empty value
-  result = result.replace(/^,/, ' ,')
+  result = input.replace(/^,/, ' ,')
   // add a blank space after last comma for an empty value
   result = result.replace(/,$/, ', ')
   // add a blank space between unspaced commas for an empty value
